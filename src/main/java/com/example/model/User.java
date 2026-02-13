@@ -1,6 +1,11 @@
 package com.example.model;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Column;
 
 @Entity
 @Table(name = "users")
@@ -68,5 +73,18 @@ public class User {
                 ", email='" + email + '\'' +
                 ", age=" + age +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User)) return false;
+        User user = (User) o;
+        return id != null && id.equals(user.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return 31;
     }
 }
